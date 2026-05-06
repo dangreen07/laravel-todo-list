@@ -1,7 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
-import { dashboard, login, register } from '@/routes';
-
+import { dashboard, login, register, todoList } from '@/routes';
 
 export default function Welcome({
     canRegister = true,
@@ -14,14 +13,13 @@ export default function Welcome({
         <>
             <Head title="Welcome" />
             <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col">
-
                 {/* Nav */}
                 <nav className="w-full">
                     <div className="flex items-center justify-between px-8 py-6 max-w-5xl mx-auto">
                     <span className="text-sm font-medium tracking-tight">Tasks</span>
                     <div className="flex items-center gap-2">
                         {auth.user ? (
-                            <Link href={dashboard()}>
+                            <Link href={todoList()}>
                                 <Button variant="ghost" size="sm">Dashboard</Button>
                             </Link>
                         ) : (
@@ -29,17 +27,11 @@ export default function Welcome({
                                 <Link href={login()}>
                                     <Button variant="ghost" size="sm">Log in</Button>
                                 </Link>
-                                {canRegister && (
-                                    <Link href={register()}>
-                                        <Button size="sm">Sign up</Button>
-                                    </Link>
-                                )}
                             </>
                         )}
                     </div>
                     </div>
                 </nav>
-
                 {/* Hero */}
                 <main className="w-full flex-1">
                     <div className="max-w-5xl px-8 pt-28 pb-40 mx-auto">
