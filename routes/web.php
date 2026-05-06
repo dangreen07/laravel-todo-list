@@ -9,11 +9,22 @@ Route::inertia('/', 'home', [
 ])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    [Route::inertia('dashboard',
+        'dashboard')->name('dashboard'),
+
+        Route::get('/todo-list', [
+                TaskController::class, 'index',
+            ])->name('todo-list'),
+
+        Route::post('/task', [
+                TaskController::class,
+                'newTask',
+            ])->name('new-task'),
+
+        Route::patch('/task/{id}', [
+            TaskController::class,
+            'updateTask'
+        ])->name('update-task')
+    ];
 });
-
-Route::get('/todo-list', [
-    TaskController::class, 'index'
-])->name('todo-list');
-
 require __DIR__.'/settings.php';

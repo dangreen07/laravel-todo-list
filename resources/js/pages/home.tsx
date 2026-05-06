@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
-import { dashboard, login, register, todoList } from '@/routes';
+import { login, register, todoList } from '@/routes';
 
 export default function Welcome({
     canRegister = true,
@@ -13,25 +13,7 @@ export default function Welcome({
         <>
             <Head title="Welcome" />
             <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col">
-                {/* Nav */}
-                <nav className="w-full">
-                    <div className="flex items-center justify-between px-8 py-6 max-w-5xl mx-auto">
-                    <span className="text-sm font-medium tracking-tight">Tasks</span>
-                    <div className="flex items-center gap-2">
-                        {auth.user ? (
-                            <Link href={todoList()}>
-                                <Button variant="ghost" size="sm">Dashboard</Button>
-                            </Link>
-                        ) : (
-                            <>
-                                <Link href={login()}>
-                                    <Button variant="ghost" size="sm">Log in</Button>
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                    </div>
-                </nav>
+                
                 {/* Hero */}
                 <main className="w-full flex-1">
                     <div className="max-w-5xl px-8 pt-28 pb-40 mx-auto">
@@ -44,8 +26,8 @@ export default function Welcome({
                         </p>
 
                         {auth.user ? (
-                            <Link href={dashboard()}>
-                                <Button size="lg">Open dashboard</Button>
+                            <Link href={todoList()}>
+                                <Button size="lg">Open your todo list</Button>
                             </Link>
                         ) : (
                             <div className="flex items-center gap-3">
