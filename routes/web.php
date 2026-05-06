@@ -21,10 +21,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 'newTask',
             ])->name('new-task'),
 
-        Route::patch('/task/{id}', [
+        Route::post('/task/{id}', [
             TaskController::class,
             'updateTask'
-        ])->name('update-task')
+        ])->name('update-task'),
+
+        Route::post('/task/{id}/delete',[
+            TaskController::class,
+            'deleteTask'
+        ])->name('delete-task')
     ];
 });
 require __DIR__.'/settings.php';

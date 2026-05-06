@@ -38,9 +38,7 @@ class TaskController extends Controller
             'description' => $validated['description'],
             'checked' => false,
         ]);
-        $tasks = \DB::table('task')->latest()->where('user_id', $userId)->get()->toArray();
-
-        return to_route('todo-list', ['tasks' => $tasks]);
+        return to_route('todo-list');
     }
 
     public function updateTask(Request $request, int $id): Response | RedirectResponse {
@@ -59,6 +57,19 @@ class TaskController extends Controller
             ->where('id', $id)
             ->where('user_id', $userId)
             ->update($request->all());
-        return response()->redirectToRoute('/');
+        return response()->redirectToRoute('todo-list');
+    }
+
+    public function deleteTask(Request $request, int $id): Response | RedirectResponse {
+        $user = $request->user();
+        if ($user === null) {
+            return response('Unauthorized', 401);
+        }
+        $userId = $user->id;
+        \DB::table('task')
+        ->where('id', $id)
+        ->where('user_id', $userId)
+        ->delete();
+        return response()->redirectToRoute('todo-list');
     }
 }

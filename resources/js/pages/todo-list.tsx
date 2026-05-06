@@ -68,7 +68,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                         </DialogContent>
                     </Dialog>
                 </div>
-                {tasks.map((task) => (
+                {tasks.length > 0 &&tasks.map((task) => (
                 <div
                     key={`task-${task.id}`}
                     className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
@@ -86,7 +86,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                             onChange={() => {
                                 setTasks(previous => previous.map(t => t.id === task.id ? { ...t, checked: !t.checked } : t));
                                 fetch(`/task/${task.id}`, {
-                                    method: 'PATCH',
+                                    method: 'POST',
                                     body: JSON.stringify({ checked: !task.checked }),
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                                                     }}>Edit Task</Button>
                                                 </DialogTrigger>
                                                 <DialogContent>
-                                                    <form method="PATCH" action={`/task/${task.id}`}>
+                                                    <form method="POST" action={`/task/${task.id}`}>
                                                         <DialogHeader>
                                                             <DialogTitle>Edit Task</DialogTitle>
                                                             <DialogDescription>
@@ -179,7 +179,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                                                     <Button variant="ghost" className="justify-start">Delete Task</Button>
                                                 </DialogTrigger>
                                                 <DialogContent>
-                                                    <form method="DELETE" action={`/task/${task.id}`}>
+                                                    <form method="POST" action={`/task/${task.id}/delete`}>
                                                         <DialogHeader>
                                                             <DialogTitle>Delete Task</DialogTitle>
                                                             <DialogDescription>
@@ -209,6 +209,10 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                     </label>
                 </div>
                 ))}
+                {tasks.length === 0 && <div className="text-center">
+                    <h2 className="text-2xl font-semibold">You have no tasks.</h2>
+                    <p className="text-sm">Add a new task to get started.</p>
+                </div>}
                 </div>
         </main>
     )
