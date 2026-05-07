@@ -28,5 +28,4 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
-    base: process.env.APP_URL || '/',
 });
