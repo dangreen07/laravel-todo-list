@@ -4,10 +4,6 @@ use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-if (env("APP_ENV") === "production") {
-    URL::forceHttps();
-}
-
 Route::inertia('/', 'home', [
     'canRegister' => Features::enabled(Features::registration()),
 ])->name('home');
@@ -37,3 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ];
 });
 require __DIR__.'/settings.php';
+
+if (env("APP_ENV") === "production") {
+    URL::forceHttps();
+}
