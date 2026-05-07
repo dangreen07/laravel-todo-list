@@ -32,8 +32,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ])->name('delete-task')
     ];
 });
-require __DIR__.'/settings.php';
 
-if (env("APP_ENV") === "production") {
-    URL::forceHttps();
-}
+require __DIR__.'/settings.php';
