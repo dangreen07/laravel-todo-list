@@ -51,11 +51,11 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                                 <FieldGroup className="py-2">
                                     <Field>
                                         <Label htmlFor="name">Name</Label>
-                                        <Input id="name" name="name" placeholder="Enter a task name" />
+                                        <Input id="name" name="name" required placeholder="Enter a task name" />
                                     </Field>
                                     <Field>
                                         <Label htmlFor="description">Description</Label>
-                                        <Input id="description" name="description" placeholder="Enter a task description" />
+                                        <Input id="description" name="description" required placeholder="Enter a task description" />
                                     </Field>
                                 </FieldGroup>
                                 <DialogFooter>
