@@ -12,7 +12,7 @@ export default function Welcome({
     return (
         <>
             <Head title="Welcome" />
-            <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col">
+            <div className="min-h-screen flex flex-col">
                 
                 {/* Hero */}
                 <main className="w-full flex-1">

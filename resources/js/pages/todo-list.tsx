@@ -38,7 +38,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                     <h1 className="text-2xl font-semibold">Your Todo List</h1>
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button className="text-sm">Add Task</Button>
+                            <Button className="text-sm" variant="outline">Add Task</Button>
                         </DialogTrigger>
                         <DialogContent>
                             <form method="POST" action="/task">
@@ -71,7 +71,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                 {tasks.length > 0 &&tasks.map((task) => (
                 <div
                     key={`task-${task.id}`}
-                    className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+                    className="rounded-lg border border-card-foreground bg-background p-4 shadow-sm"
                 >
                     <label
                     htmlFor={`task-${task.id}-checked`}
@@ -97,7 +97,7 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                                 })
                             }}
                             readOnly
-                            className="mt-1 h-5 w-5 appearance-none rounded border border-slate-300 bg-white 
+                            className="mt-1 h-5 w-5 appearance-none rounded border border-input
                                         checked:border-emerald-600 checked:bg-emerald-600 
                                         focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                             />
@@ -105,14 +105,14 @@ export default function TodoList({ tasks: initialTasks }: Props) {
                             <div className="min-w-0">
                                 <span
                                     id={`task-${task.id}-name`}
-                                    className="block text-base font-semibold text-slate-900"
+                                    className="block text-base font-semibold"
                                 >
                                     {task.name}
                                 </span>
 
                                 <span
                                     id={`task-${task.id}-description`}
-                                    className="mt-1 block text-sm leading-relaxed text-slate-600"
+                                    className="mt-1 block text-sm leading-relaxed text-accent-foreground"
                                 >
                                     {task.description}
                                 </span>
